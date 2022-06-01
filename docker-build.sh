@@ -22,14 +22,14 @@ CONSUL_VERSION=1.9.6
 COUCHDB_VERSION=2.3.1
 INFLUXDB_VERSION=2.2.0
 INFLUXDB_VERSION_ARM32V7=1.8.10
-KAFKA_VERSION=3.7.1
-ZK_VERSION=3.6.3
+KAFKA_VERSION=2.2.0
+ZK_VERSION=3.4.13
 DNSMASQ_VERSION=1.0.7
 FLINK_VERSION=1.13.6-scala_2.11
 OPENJDK8_OPENJ9_VERSION=stretch-slim
 
-docker_img_array=( activemq consul couchdb influxdb kafka zookeeper go-dnsmasq flink  )
-
+#docker_img_array=( activemq consul couchdb influxdb kafka zookeeper go-dnsmasq flink  )
+docker_img_array=( zookeeper )
 cp_qemu() {
 	echo "======> Copy qemu static binaries: [ $1 ]"
 	cp /usr/bin/{qemu-arm-static,qemu-aarch64-static} $1

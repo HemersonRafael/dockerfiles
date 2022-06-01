@@ -17,8 +17,8 @@ Currently, the resulting Docker images support the following CPU architectures:
 | Consul         | 1.9.6             |
 | CouchDB        | 2.3.1             |
 | InfluxDB       | 2.2.0 | 1.8.10    |
-| Kafka          | 3.7.1             |
-| Zookeeper      | 3.6.3             |
+| Kafka          | 2.2.0             |
+| Zookeeper      | 3.4.13            |
 | DNSmasq        | 1.0.7             |
 | Flink          | 1.13.6-scala_2.11 |
 | Openjdk-openj9 | stretch-slim      |
