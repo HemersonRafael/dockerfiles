@@ -13,7 +13,7 @@ LABEL io.fogsy.build-date=$BUILD_DATE \
       io.fogsy.vcs-url="https://github.com/fogsy-io/dockerfiles"
 
 # Install Flink
-ENV FLINK_VERSION=1.13.5 \
+ENV FLINK_VERSION=1.13.6 \
     SCALA_VERSION=2.11 \
     GOSU_VERSION=1.11
 
@@ -42,8 +42,8 @@ RUN set -ex; \
   gosu nobody true
 
 # Configure Flink version
-ENV FLINK_TGZ_URL=https://archive.apache.org/dist/flink/flink-${FLINK_VERSION}/flink-${FLINK_VERSION}-bin-scala_${SCALA_VERSION}.tgz \
-    FLINK_ASC_URL=https://archive.apache.org/dist/flink/flink-${FLINK_VERSION}/flink-${FLINK_VERSION}-bin-scala_${SCALA_VERSION}.tgz.asc
+ENV FLINK_TGZ_URL=http://ftp.unicamp.br/pub/apache/flink/flink-${FLINK_VERSION}/flink-${FLINK_VERSION}-bin-scala_${SCALA_VERSION}.tgz \
+    FLINK_ASC_URL=http://ftp.unicamp.br/pub/apache/flink/flink-${FLINK_VERSION}/flink-${FLINK_VERSION}-bin-scala_${SCALA_VERSION}.tgz.asc
 
 # Prepare environment
 ENV FLINK_HOME=/opt/flink
