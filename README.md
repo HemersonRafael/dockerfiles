@@ -11,17 +11,17 @@ Currently, the resulting Docker images support the following CPU architectures:
 
 ### Current versions
 
-| Docker images  | version tags     |
-|----------------|------------------|
-| ActiveMQ       | 5.15.9           |
-| Consul         | 1.9.6            |
-| CouchDB        | 2.3.1            |
-| InfluxDB       | 2.0              |
-| Kafka          | 2.2.0            |
-| Zookeeper      | 3.4.13           |
-| DNSmasq        | 0.7              |
-| Flink          | 1.13.2-scala_2.11 |
-| Openjdk-openj9 | stretch-slim     |
+| Docker images  | version tags      |
+|----------------|-------------------|
+| ActiveMQ       | 5.16.5            |
+| Consul         | 1.9.6             |
+| CouchDB        | 2.3.1             |
+| InfluxDB       | 2.2.0 | 1.8.10    |
+| Kafka          | 3.7.1             |
+| Zookeeper      | 3.6.3             |
+| DNSmasq        | 1.0.7             |
+| Flink          | 1.13.6-scala_2.11 |
+| Openjdk-openj9 | stretch-slim      |
 
 ### Update base images/tags
 You can find the used base images and tags within `docker-build.sh`.
