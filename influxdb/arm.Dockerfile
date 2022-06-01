@@ -1,4 +1,4 @@
-ARG BASE_IMG=influxdb:2.2.0
+ARG BASE_IMG=influxdb:1.8.10
 FROM $BASE_IMG
 
 ARG BUILD_DATE
@@ -11,3 +11,5 @@ LABEL io.fogsy.build-date=$BUILD_DATE \
       io.fogsy.vcs-ref=$VCS_REF \
       io.fogsy.vcs-type="Git" \
       io.fogsy.vcs-url="https://github.com/fogsy-io/dockerfiles"
+
+COPY qemu-arm-static /usr/bin

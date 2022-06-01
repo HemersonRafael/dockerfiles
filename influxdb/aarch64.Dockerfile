@@ -11,3 +11,5 @@ LABEL io.fogsy.build-date=$BUILD_DATE \
       io.fogsy.vcs-ref=$VCS_REF \
       io.fogsy.vcs-type="Git" \
       io.fogsy.vcs-url="https://github.com/fogsy-io/dockerfiles"
+
+COPY qemu-aarch64-static /usr/bin
