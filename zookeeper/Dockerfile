@@ -20,12 +20,12 @@ RUN set -x && \
     apk --update add --virtual build-dependencies curl && \
     curl -s http://ftp.unicamp.br/pub/apache/zookeeper/zookeeper-$ZK_VERSION/apache-zookeeper-$ZK_VERSION.tar.gz | tar -xzvf - -C /opt && \
     mv $ZK_HOME/conf/zoo_sample.cfg $ZK_HOME/conf/zoo.cfg && \
-    sed  -i "s|/tmp/zookeeper|$ZK_HOME/data|g" $ZK_HOME/conf/zoo.cfg && \
+    sed  -i "s|/tmp/apache-zookeeper|$ZK_HOME/data|g" $ZK_HOME/conf/zoo.cfg && \
     mkdir -p $ZK_HOME/data && \
     apk del build-dependencies && \
     rm -rf /var/cache/apk/*
 
-WORKDIR /opt/zookeeper-$ZK_VERSION
+WORKDIR /opt/apache-zookeeper-$ZK_VERSION
 
 EXPOSE 2181 2888 3888
 
