@@ -7,25 +7,29 @@ BASE_IMG_ALPINE_DEFAULT=alpine:3.9
 BASE_IMG_ALPINE_ARM32V7=arm32v7/alpine:3.9
 BASE_IMG_ALPINE_ARM64V8=arm64v8/alpine:3.9
 BASE_IMG_JRE_DEFAULT=adoptopenjdk/openjdk8-openj9:alpine-slim
-BASE_IMG_JRE_ARM32V7=arm32v7/openjdk:8-jre-alpine
-BASE_IMG_JRE_ARM64V8=arm64v8/openjdk:8-jre-alpine
+BASE_IMG_JRE_ARM32V7=arm32v7/openjdk:8-jre-alpine3.9
+BASE_IMG_JRE_ARM64V8=arm64v8/openjdk:8-jre-alpine3.9
 BASE_IMG_DEBIAN_DEFAULT=debian:stretch-slim
 BASE_IMG_DEBIAN_ARM32V7=arm32v7/debian:stretch-slim
 BASE_IMG_DEBIAN_ARM64V8=arm64v8/debian:stretch-slim
+BASE_IMG_INFLUXDB_DEFAULT=influxdb:2.2.0
+BASE_IMG_INFLUXDB_ARM32V7=arm32v7/influxdb:1.8.10
+BASE_IMG_INFLUXDB_ARM64V8=arm64v8/influxdb:2.2.0
 
 # image version tags
-ACTIVEMQ_VERSION=5.15.9
+ACTIVEMQ_VERSION=5.16.5
 CONSUL_VERSION=1.9.6
 COUCHDB_VERSION=2.3.1
-INFLUXDB_VERSION=2.0
-KAFKA_VERSION=2.2.0
-ZK_VERSION=3.4.13
+INFLUXDB_VERSION=2.2.0
+INFLUXDB_VERSION_ARM32V7=1.8.10
+KAFKA_VERSION=3.7.1
+ZK_VERSION=3.6.3
 DNSMASQ_VERSION=1.0.7
-FLINK_VERSION=1.13.5-scala_2.11
+FLINK_VERSION=1.13.6-scala_2.11
 OPENJDK8_OPENJ9_VERSION=stretch-slim
 
-docker_img_array=( activemq consul couchdb influxdb kafka zookeeper go-dnsmasq flink )
-
+#docker_img_array=( activemq consul couchdb influxdb kafka zookeeper go-dnsmasq flink )
+docker_img_array=( influxdb )
 cp_qemu() {
 	echo "======> Copy qemu static binaries: [ $1 ]"
 	cp /usr/bin/{qemu-arm-static,qemu-aarch64-static} $1
@@ -112,6 +116,12 @@ docker_build_push() {
 			BASE_IMG_DEFAULT=$BASE_IMG_ALPINE_DEFAULT
 			BASE_IMG_ARM32V7=$BASE_IMG_ALPINE_ARM32V7
 			BASE_IMG_ARM64V8=$BASE_IMG_ALPINE_ARM64V8
+	elif [ "$TYPE" == "influxdb" ]; then
+			BASE_IMG_DEFAULT=$BASE_IMG_INFLUXDB_DEFAULT
+			BASE_IMG_ARM32V7=$BASE_IMG_INFLUXDB_ARM32V7
+			BASE_IMG_ARM64V8=$BASE_IMG_INFLUXDB_ARM64V8
+			IMG_NAME_ARM32V7=$DOCKERHUB_REPO/$SERVICE:arm32v7-$INFLUXDB_VERSION_ARM32V7
+			IMG_NAME_DEFAULT=$DOCKERHUB_REPO/$SERVICE:$INFLUXDB_VERSION_ARM32V7
 	fi
 
 	# build docker images
@@ -161,6 +171,14 @@ docker_build_push_multiarch_existing() {
 	IMG_NAME_ARM32V7=$DOCKERHUB_REPO/$SERVICE:arm32v7-$VERSION
 	IMG_NAME_ARM64V8=$DOCKERHUB_REPO/$SERVICE:arm64v8-$VERSION
 
+	if [ "$TYPE" == "influxdb" ]; then
+		BASE_IMG_DEFAULT=$BASE_IMG_INFLUXDB_DEFAULT
+		BASE_IMG_ARM32V7=$BASE_IMG_INFLUXDB_ARM32V7
+		BASE_IMG_ARM64V8=$BASE_IMG_INFLUXDB_ARM64V8
+		IMG_NAME_ARM32V7=$DOCKERHUB_REPO/$SERVICE:arm32v7-$INFLUXDB_VERSION_ARM32V7
+		IMG_NAME_DEFAULT=$DOCKERHUB_REPO/$SERVICE:$INFLUXDB_VERSION_ARM32V7
+	fi
+	
 	# build docker images
 	echo "======> Building Docker Image: [ $IMG_NAME_DEFAULT, $IMG_NAME_AMD64 ]"
 	docker build --pull \
@@ -220,7 +238,7 @@ do
 
   elif [ "$i" == "influxdb" ]; then
 		cp_qemu $i
-		docker_build_push_multiarch_existing $i $INFLUXDB_VERSION
+		docker_build_push "influxdb" $i $INFLUXDB_VERSION
 
   elif [ "$i" == "kafka" ]; then
 		cp_qemu $i
