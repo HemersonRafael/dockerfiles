@@ -28,7 +28,7 @@ DNSMASQ_VERSION=1.0.7
 FLINK_VERSION=1.13.6-scala_2.11
 OPENJDK8_OPENJ9_VERSION=stretch-slim
 
-docker_img_array=( activemq consul couchdb influxdb kafka zookeeper go-dnsmasq flink )
+docker_img_array=( activemq )
 
 cp_qemu() {
 	echo "======> Copy qemu static binaries: [ $1 ]"
