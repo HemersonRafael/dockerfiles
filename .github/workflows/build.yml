@@ -12,7 +12,7 @@ jobs:
     - name: Set env variables for Docker builds
       run: |
         echo "DOCKER_CLI_EXPERIMENTAL=enabled" >> $GITHUB_ENV
-        echo "DOCKERHUB_REPO=fogsyio" >> $GITHUB_ENV
+        echo "DOCKERHUB_REPO=hemersonrafael" >> $GITHUB_ENV
     - name: Docker enable experimental feature
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
