@@ -12,7 +12,7 @@ LABEL io.fogsy.build-date=$BUILD_DATE \
       io.fogsy.vcs-type="Git" \
       io.fogsy.vcs-url="https://github.com/fogsy-io/dockerfiles"
 
-ENV KAFKA_VERSION=2.2.0 \
+ENV KAFKA_VERSION=2.8.1 \
     SCALA_VERSION=2.12 \
     KAFKA_HOME=/opt/kafka \
     GLIBC_VERSION=2.29-r0
