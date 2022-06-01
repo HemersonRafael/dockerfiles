@@ -22,7 +22,7 @@ RUN set -x && \
     curl -s http://ftp.unicamp.br/pub/apache/activemq/$ACTIVEMQ_VERSION/apache-activemq-$ACTIVEMQ_VERSION-bin.tar.gz | tar -xzf - -C /opt && \
     mv /opt/apache-activemq-$ACTIVEMQ_VERSION /opt/activemq && \
     apk del build-dependencies && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* \
     && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk \
     && apk add --no-cache --allow-untrusted glibc-${GLIBC_VERSION}.apk \
     && rm glibc-${GLIBC_VERSION}.apk
