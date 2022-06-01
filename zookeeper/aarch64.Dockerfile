@@ -12,15 +12,15 @@ LABEL io.fogsy.build-date=$BUILD_DATE \
       io.fogsy.vcs-type="Git" \
       io.fogsy.vcs-url="https://github.com/fogsy-io/dockerfiles"
 
-ENV ZK_VERSION=3.4.13
-ENV ZK_HOME=/opt/zookeeper-$ZK_VERSION
+ENV ZK_VERSION=3.6.3
+ENV ZK_HOME=/opt/apache-zookeeper-$ZK_VERSION
 
 COPY qemu-aarch64-static /usr/bin
 
 RUN set -x && \
     apk --update add bash && \
     apk --update add --virtual build-dependencies curl && \
-    curl -s https://archive.apache.org/dist/zookeeper/zookeeper-$ZK_VERSION/zookeeper-$ZK_VERSION.tar.gz | tar -xzvf - -C /opt && \
+    curl -s http://ftp.unicamp.br/pub/apache/zookeeper/zookeeper-$ZK_VERSION/apache-zookeeper-$ZK_VERSION.tar.gz | tar -xzvf - -C /opt && \
     mv $ZK_HOME/conf/zoo_sample.cfg $ZK_HOME/conf/zoo.cfg && \
     sed  -i "s|/tmp/zookeeper|$ZK_HOME/data|g" $ZK_HOME/conf/zoo.cfg && \
     mkdir -p $ZK_HOME/data && \
