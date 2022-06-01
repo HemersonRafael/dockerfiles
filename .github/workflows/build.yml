@@ -5,13 +5,12 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Set up QEMU
-    - uses: docker/setup-qemu-action@v2
-    - uses: actions/checkout@v2
+      uses: docker/setup-qemu-action@v2
+    - name: Check out repository code
+      uses: actions/checkout@v2
     - name: Set env variables for Docker builds
       run: |
         echo "DOCKER_CLI_EXPERIMENTAL=enabled" >> $GITHUB_ENV
